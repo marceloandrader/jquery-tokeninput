@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="src/jquery.tokeninput.js"></script>
+
+    <link rel="stylesheet" href="styles/token-input.css" type="text/css" />
+    <link rel="stylesheet" href="styles/token-input-facebook.css" type="text/css" />
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("input[type=button]").click(function () {
+            alert("Would submit: " + $(this).siblings("input[type=text]").val());
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <h1>jQuery Tokeninput Search in a Tree Hierarchy Demo</h1>
+
+    <h2>Server-Backed Search in Tree scoped by already selected nodes</h2>
+    <div>
+        <input type="text" id="demo-input" name="blah" />
+        <input type="button" value="Submit" />
+        <script type="text/javascript">
+        $(document).ready(function() {
+						$("#demo-input").tokenInput(function() {
+								var previous = '';
+								if ($("#demo-input").data('tokenInputObject')) {
+										var tokens = $("#demo-input").tokenInput('get');
+										if (tokens.length > 0) {
+											previous = tokens[tokens.length - 1].id;
+										}
+								}
+								return "/examples/tree-search.php?previous="+previous;
+							}, {
+							theme: 'facebook'
+						});
+        });
+        </script>
+    </div>
+
+
+</body>
+</html>
+
